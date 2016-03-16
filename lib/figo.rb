@@ -87,6 +87,8 @@ module Figo
           hash = JSON.parse(response.body)
           raise Error.new(hash["error"], hash["error_description"])
         when Net::HTTPUnauthorized
+          p response
+          p response.body
           raise Error.new("unauthorized", "Missing, invalid or expired access token.")
         when Net::HTTPForbidden
           raise Error.new("forbidden", "Insufficient permission.")
